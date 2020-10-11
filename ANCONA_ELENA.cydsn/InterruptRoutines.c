@@ -26,63 +26,76 @@ int counter=0;
 
 
 CY_ISR(Custom_LED_ISR)
-{
+
+{    
   counter ++;
- 
     
-    if (counter==1)
+    switch(counter)
     {
+        
+        case(1):
+        PWM_1_SetCompareMode1(2);
+        PWM_1_SetCompareMode2(2);
         PWM_1_WritePeriod(DUE_SEC);
-        PWM_1_WriteCompare1(0); // Green LED is active 
-        PWM_1_WriteCompare2(0); // Red LED is active
-    
-    }
-    if (counter==2)
-    {
-        PWM_1_WritePeriod (DUE_SEC);
-        PWM_1_WriteCompare1(128); // Green LED is active for half period
-        PWM_1_WriteCompare2(0); //Red LED is active for the whole period
-       
-    }
-    
-    if (counter==3) // Is the opposite of condition 2
-    {   PWM_1_WritePeriod (DUE_SEC);
+        PWM_1_WriteCompare1(0);
+        PWM_1_WriteCompare2(0);
+        break;
+        
+        case(2):
+        PWM_1_SetCompareMode1(2);
+        PWM_1_SetCompareMode2(2);
+        PWM_1_WritePeriod(DUE_SEC);
+        PWM_1_WriteCompare1(128);
+        PWM_1_WriteCompare2(0);
+        break;
+        
+        case(3):
+        PWM_1_SetCompareMode1(2);
+        PWM_1_SetCompareMode2(3);
+        PWM_1_WritePeriod(DUE_SEC);
         PWM_1_WriteCompare1(0);
         PWM_1_WriteCompare2(128);
+        break;
         
-    }
-    if (counter==4)
-    {   PWM_1_WritePeriod (UN_SEC);
+        case(4):
+        PWM_1_SetCompareMode1(3);
+        PWM_1_SetCompareMode2(2);
+        PWM_1_WritePeriod(UN_SEC);
         PWM_1_WriteCompare1(64);
         PWM_1_WriteCompare2(64);
+        break;
         
-    }
-    
-     if (counter==5)
-    {   PWM_1_WritePeriod (QUARTO_SEC);
+        case(5):
+        PWM_1_SetCompareMode1(2);
+        PWM_1_SetCompareMode2(3);
+        PWM_1_WritePeriod(MEZZO_SEC);
         PWM_1_WriteCompare1(32);
         PWM_1_WriteCompare2(32);
+        break;
         
-    }
-    
-     if (counter==6)
-    {   PWM_1_WritePeriod (DUE_SEC);
+        case(6):
+        PWM_1_SetCompareMode1(2);
+        PWM_1_SetCompareMode2(2);
+        PWM_1_WritePeriod(DUE_SEC);
         PWM_1_WriteCompare1(128);
-        PWM_1_WriteCompare2(192);
+        PWM_1_WriteCompare2(64);
+        break;
         
-    }
-    
-    if (counter==7)
-    {   PWM_1_WritePeriod (DUE_SEC);
-        PWM_1_WriteCompare1(64);
+        case(7):
+        PWM_1_SetCompareMode1(2);
+        PWM_1_SetCompareMode2(3);
+        PWM_1_WritePeriod(UN_SEC);
+        PWM_1_WriteCompare1(192);
         PWM_1_WriteCompare2(128);
+       
         
+        counter=0;
+        break;
     }
-    
-    
-    counter=1;
-    
+  
+   
 }
+    
 
 
 
