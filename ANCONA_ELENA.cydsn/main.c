@@ -14,14 +14,18 @@
 #include "InterruptRoutines.h"
 
 
+
+
 int main(void)
 {
     CyGlobalIntEnable; /* Enable global interrupts. */
 
     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
-    isr_1_Start();
     
-    isr_1_StartEx(Custom_LED_ISR);
+    
+    PWM_1_Start();
+    
+    Button_isr_1_StartEx(Custom_LED_ISR);
     
 
     for(;;)
